@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT & AI Studio</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,"Noto Sans Myanmar",sans-serif;
+}
+
+body{
+  background:#030719;
+  color:white;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+}
+
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0 20px;
+}
+
+.menu{
+  font-size:32px;
+  color:#b89cff;
+}
+
+.logo{
+  text-align:center;
+  flex:1;
+}
+
+.logo h1{
+  font-size:34px;
+  font-weight:900;
+  background:linear-gradient(90deg,#00eaff,#9d35ff,#ff35e9);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.logo p{
+  color:#eee;
+  margin-top:4px;
+  font-size:14px;
+}
+
+.vip,.profile{
+  font-size:28px;
+  margin-left:10px;
+}
+
+/* Search */
+.search{
+  border:3px solid #00eaff;
+  border-radius:45px;
+  padding:10px;
+  display:flex;
+  align-items:center;
+  box-shadow:0 0 20px #00eaff55;
+  margin-bottom:18px;
+}
+
+.search input{
+  flex:1;
+  background:transparent;
+  border:0;
+  outline:none;
+  color:white;
+  font-size:16px;
+  padding:8px 12px;
+}
+
+.search button{
+  width:52px;
+  height:52px;
+  border:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff32db,#7e32ff);
+  color:white;
+  font-size:28px;
+}
+
+/* Categories */
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:12px;
+}
+
+.category{
+  min-width:150px;
+  border:2px solid #3156c9;
+  border-radius:30px;
+  padding:12px 18px;
+  text-align:center;
+  color:white;
+  background:#07102d;
+}
+
+/* Cards */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.card{
+  min-height:190px;
+  border-radius:28px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  border:2px solid;
+  box-shadow:0 0 20px #000;
+}
+
+.card h2{
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.card p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.card .icon{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  background:#ffffff22;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.blue{
+  border-color:#00d9ff;
+  background:linear-gradient(135deg,#064d9b,#101d78);
+}
+
+.pink{
+  border-color:#ff31e8;
+  background:linear-gradient(135deg,#8b0cbd,#35106e);
+}
+
+.orange{
+  border-color:#ffb000;
+  background:linear-gradient(135deg,#9b4c00,#692400);
+}
+
+.green{
+  border-color:#00eaa0;
+  background:linear-gradient(135deg,#007d67,#073e54);
+}
+
+.purple{
+  border-color:#b12cff;
+  background:linear-gradient(135deg,#48168d,#15106c);
+}
+
+.cyan{
+  border-color:#00cfff;
+  background:linear-gradient(135deg,#075c99,#102a7d);
+}
+
+.go{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:0;
+  background:#ffffff22;
+  color:white;
+  font-size:25px;
+}
+
+/* Recent */
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:28px 0 15px;
+}
+
+.section-title h2{
+  font-size:20px;
+}
+
+.projects{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+
+.project{
+  min-width:190px;
+  background:#07112d;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid #223b78;
+}
+
+.project .pic{
+  height:115px;
+  background:linear-gradient(135deg,#5d257a,#1c69a0,#ff8a3d);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:45px;
+}
+
+.project .info{
+  padding:10px;
+}
+
+.project small{
+  color:#aaa;
+}
+
+/* Bottom Nav */
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:78px;
+  background:#06102b;
+  border-top:2px solid #1a5eff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:10;
+}
+
+.nav{
+  text-align:center;
+  color:#bbb;
+  font-size:12px;
+}
+
+.nav span{
+  display:block;
+  font-size:28px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:#00eaff;
+}
+
+.plus{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#00eaff,#d000ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  margin-top:-28px;
+  border:5px solid #091331;
+}
+
+/* Responsive */
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .card{
+    min-height:205px;
+    padding:14px;
+  }
+
+  .card h2{
+    font-size:17px;
+  }
+
+  .logo h1{
+    font-size:25px;
+  }
+
+  .category{
+    min-width:125px;
+    padding:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="menu">☰</div>
+
+    <div class="logo">
+      <h1>PT & AI Studio</h1>
+      <p>Create Your Story with AI</p>
+    </div>
+
+    <div class="vip">👑</div>
+    <div class="profile">◯</div>
+  </div>
+
+  <div class="search">
+    <input id="prompt" type="text"
+      placeholder="သင်လိုချင်တာကို / အိုင်ဒီယာကို ရေးလိုက်ပါ...">
+    <button onclick="generate()">➜</button>
+  </div>
+
+  <div class="categories">
+    <div class="category">🔥 လူကြိုက်များ</div>
+    <div class="category">⭐ အသစ်များ</div>
+    <div class="category">💗 နာမည်ကြီး Tools</div>
+    <div class="category">✨ AI Tools များ</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card blue" onclick="openTool('AI Image')">
+      <div class="icon">🖼️</div>
+      <h2>AI ပုံဖန်တီးခြင်း</h2>
+      <p>AI Image<br>စာရေးပြီး ပုံဖန်တီးပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+    <div class="card pink" onclick="openTool('Image to Video')">
+      <div class="icon">🎞️</div>
+      <h2>ပုံမှ ဗီဒီယိုပြောင်းခြင်း</h2>
+      <p>Image to Video<br>ပုံတစ်ပုံကို ဗီဒီယိုပြောင်းပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+    <div class="card orange" onclick="openTool('Text to Video')">
+      <div class="icon">T</div>
+      <h2>စာသားမှ ဗီဒီယိုဖန်တီးခြင်း</h2>
+      <p>Text to Video<br>စာရေးပြီး ဗီဒီယိုဖန်တီးပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+    <div class="card green" onclick="openTool('AI Voice')">
+      <div class="icon">🎙️</div>
+      <h2>AI အသံ</h2>
+      <p>AI Voice<br>မြန်မာဘာသာဖြင့် အသံဖန်တီးပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+    <div class="card purple" onclick="openTool('Music & SFX')">
+      <div class="icon">🎵</div>
+      <h2>သီချင်း / အသံအကျိုးသက်ရောက်မှု</h2>
+      <p>Music & SFX<br>သီချင်းနှင့် အသံများဖန်တီးပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+    <div class="card cyan" onclick="openTool('My Projects')">
+      <div class="icon">📁</div>
+      <h2>ကျွန်ုပ်၏ ပရောဂျက်များ</h2>
+      <p>My Projects<br>ဖန်တီးထားသော အလုပ်များကို သိမ်းဆည်းပါ</p>
+      <button class="go">➜</button>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    <h2>⭐ နောက်ဆုံးဖန်တီးထားသောများ</h2>
+    <span>အားလုံးကြည့်ရန် ›</span>
+  </div>
+
+  <div class="projects">
+
+    <div class="project">
+      <div class="pic">💑</div>
+      <div class="info">
+        <b>ချစ်ခြင်းမေတ္တာ</b><br>
+        <small>2025-09-09</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pic">👩🏻</div>
+      <div class="info">
+        <b>AI ပုံ</b><br>
+        <small>2025-09-08</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pic">🏰</div>
+      <div class="info">
+        <b>Fantasy Video</b><br>
+        <small>2025-09-07</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pic">🐱</div>
+      <div class="info">
+        <b>ကြောင်လေး</b><br>
+        <small>2025-09-06</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pic">🌅</div>
+      <div class="info">
+        <b>သဘာဝအလှ</b><br>
+        <small>2025-09-05</small>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bottom">
+
+  <div class="nav active" onclick="home()">
+    <span>🏠</span>
+    ပင်မစာမျက်နှာ
+  </div>
+
+  <div class="nav">
+    <span>◈</span>
+    ရှာဖွေမည်
+  </div>
+
+  <div class="plus" onclick="newProject()">+</div>
+
+  <div class="nav">
+    <span>▣</span>
+    တက်ကြွမှု
+  </div>
+
+  <div class="nav">
+    <span>♙</span>
+    ကိုယ်ရေးအချက်အလက်
+  </div>
+
+</div>
+
+<script>
+
+function generate(){
+  const text=document.getElementById("prompt").value.trim();
+
+  if(text===""){
+    alert("ကျေးဇူးပြု၍ သင်လိုချင်တာကို ရေးပါ။");
+    return;
+  }
+
+  alert("AI က ဖန်တီးနေပါတယ်...\n\n" + text);
+}
+
+function openTool(tool){
+  alert(tool + " ကို ဖွင့်နေပါတယ်...");
+}
+
+function newProject(){
+  alert("Project အသစ်စတင်ရန် ပြင်ဆင်နေပါတယ်...");
+}
+
+function home(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
