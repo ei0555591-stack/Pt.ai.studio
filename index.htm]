@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P&T AI Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #030617;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .app {
+      max-width: 600px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    header {
+      text-align: center;
+      padding: 15px 0 25px;
+    }
+
+    .logo {
+      font-size: 42px;
+      font-weight: bold;
+      background: linear-gradient(90deg,#00d9ff,#a020ff,#ff27d9);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      color: #eee;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    .search {
+      border: 2px solid #00d9ff;
+      border-radius: 35px;
+      padding: 15px 20px;
+      margin-bottom: 18px;
+      background: #080b25;
+      font-size: 16px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 18px;
+    }
+
+    .cat {
+      white-space: nowrap;
+      border: 1px solid #684cff;
+      border-radius: 25px;
+      padding: 10px 15px;
+      background: #080b25;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      min-height: 150px;
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(145deg,#081f55,#35105d);
+      border: 2px solid #18cfff;
+      box-shadow: 0 0 18px rgba(0,180,255,.25);
+    }
+
+    .card:nth-child(2) {
+      border-color: #ff2bea;
+    }
+
+    .card:nth-child(3) {
+      border-color: #ffae00;
+    }
+
+    .card:nth-child(4) {
+      border-color: #22e89a;
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .desc {
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    .recent {
+      margin-top: 25px;
+    }
+
+    .recent h2 {
+      font-size: 20px;
+    }
+
+    .bottom {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 5px;
+      border-radius: 25px;
+      background: #080d2a;
+      border: 1px solid #164fbb;
+    }
+
+    .nav {
+      text-align: center;
+      color: #ddd;
+      font-size: 12px;
+    }
+
+    .plus {
+      font-size: 30px;
+      color: #ff35ed;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <div class="logo">P&T</div>
+    <div class="tagline">Create Your Story with AI</div>
+  </header>
+
+  <div class="search">
+    ✨ သင်လိုချင်တာ / အိုင်ဒီယာ ရေးသွင်းပါ...
+  </div>
+
+  <div class="categories">
+    <div class="cat">🔥 လူကြိုက်များ</div>
+    <div class="cat">⭐ အသစ်များ</div>
+    <div class="cat">💗 နာမည်ကြီး</div>
+    <div class="cat">✨ AI Tools</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">🖼️</div>
+      <div class="title">AI Image</div>
+      <div class="desc">စာရေးပြီး ပုံဖန်တီးပါ</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎬</div>
+      <div class="title">Image to Video</div>
+      <div class="desc">ပုံကို Video အဖြစ်ပြောင်းပါ</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">✍️</div>
+      <div class="title">Text to Video</div>
+      <div class="desc">စာမှ Video ဖန်တီးပါ</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎙️</div>
+      <div class="title">AI Voice</div>
+      <div class="desc">AI အသံဖန်တီးပါ</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎵</div>
+      <div class="title">Music & SFX</div>
+      <div class="desc">Music နှင့် Sound Effects</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">📁</div>
+      <div class="title">My Projects</div>
+      <div class="desc">သင့် Project များ</div>
+    </div>
+
+  </div>
+
+  <div class="recent">
+    <h2>⭐ နောက်ဆုံးဖန်တီးထားသောများ</h2>
+  </div>
+
+  <div class="bottom">
+    <div class="nav">🏠<br>ပင်မစာမျက်နှာ</div>
+    <div class="nav">🔍<br>ရှာဖွေမည်</div>
+    <div class="nav plus">＋</div>
+    <div class="nav">🖼️<br>ဖန်တီးထားသည်</div>
+    <div class="nav">👤<br>Profile</div>
+  </div>
+
+</div>
+
+</body>
+</html်။
