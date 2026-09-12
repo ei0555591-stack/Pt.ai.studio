@@ -1,158 +1,474 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>P&T AI Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT & AI Studio</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body {
-      margin: 0;
-      background: #030617;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+body{
+  background:#020617;
+  color:white;
+  font-family:Arial,"Noto Sans Myanmar",sans-serif;
+  min-height:100vh;
+}
 
-    .app {
-      max-width: 600px;
-      margin: auto;
-      padding: 18px;
-    }
+.app{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+  padding-bottom:100px;
+}
 
-    header {
-      text-align: center;
-      padding: 15px 0 25px;
-    }
+/* TOP */
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:90px;
+}
 
-    .logo {
-      font-size: 42px;
-      font-weight: bold;
-      background: linear-gradient(90deg,#00d9ff,#a020ff,#ff27d9);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+.menu{
+  font-size:38px;
+  color:#9b8cff;
+  cursor:pointer;
+}
 
-    .tagline {
-      color: #eee;
-      font-size: 16px;
-      margin-top: 8px;
-    }
+.logo{
+  text-align:center;
+  flex:1;
+}
 
-    .search {
-      border: 2px solid #00d9ff;
-      border-radius: 35px;
-      padding: 15px 20px;
-      margin-bottom: 18px;
-      background: #080b25;
-      font-size: 16px;
-    }
+.logo h1{
+  font-size:42px;
+  font-weight:900;
+  background:linear-gradient(90deg,#00eaff,#b300ff,#ff4df5);
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 25px #7c3cff;
+}
 
-    .categories {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      margin-bottom: 18px;
-    }
+.logo p{
+  font-size:18px;
+  margin-top:3px;
+}
 
-    .cat {
-      white-space: nowrap;
-      border: 1px solid #684cff;
-      border-radius: 25px;
-      padding: 10px 15px;
-      background: #080b25;
-    }
+.vip{
+  font-size:28px;
+  color:#ffd21c;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+/* SEARCH */
+.search{
+  margin-top:15px;
+  height:70px;
+  border:3px solid #00eaff;
+  border-right-color:#ff22e6;
+  border-radius:40px;
+  display:flex;
+  align-items:center;
+  padding:8px 12px 8px 22px;
+  box-shadow:0 0 18px #00eaff55,0 0 18px #ff00e655;
+}
 
-    .card {
-      min-height: 150px;
-      padding: 18px;
-      border-radius: 22px;
-      background: linear-gradient(145deg,#081f55,#35105d);
-      border: 2px solid #18cfff;
-      box-shadow: 0 0 18px rgba(0,180,255,.25);
-    }
+.search span{
+  flex:1;
+  font-size:20px;
+  color:#eee;
+}
 
-    .card:nth-child(2) {
-      border-color: #ff2bea;
-    }
+.search button{
+  width:54px;
+  height:54px;
+  border:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,#b000ff,#ff21d8);
+  color:white;
+  font-size:30px;
+}
 
-    .card:nth-child(3) {
-      border-color: #ffae00;
-    }
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:18px 0;
+}
 
-    .card:nth-child(4) {
-      border-color: #22e89a;
-    }
+.cat{
+  border:2px solid #244ea8;
+  border-radius:30px;
+  padding:12px 10px;
+  text-align:center;
+  font-size:17px;
+  background:#07102d;
+  box-shadow:0 0 10px #1445a855;
+}
 
-    .icon {
-      font-size: 38px;
-      margin-bottom: 12px;
-    }
+/* TOOLS */
+.tools{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
 
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
+.card{
+  min-height:190px;
+  border-radius:25px;
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+  border:3px solid;
+  cursor:pointer;
+  transition:.25s;
+}
 
-    .desc {
-      color: #ccc;
-      font-size: 13px;
-    }
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 25px #ffffff44;
+}
 
-    .recent {
-      margin-top: 25px;
-    }
+.card .icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:17px;
+  background:#ffffff22;
+  font-size:31px;
+  margin-bottom:15px;
+}
 
-    .recent h2 {
-      font-size: 20px;
-    }
+.card h2{
+  font-size:23px;
+  margin-bottom:7px;
+}
 
-    .bottom {
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-around;
-      padding: 15px 5px;
-      border-radius: 25px;
-      background: #080d2a;
-      border: 1px solid #164fbb;
-    }
+.card p{
+  font-size:16px;
+  line-height:1.5;
+  opacity:.9;
+}
 
-    .nav {
-      text-align: center;
-      color: #ddd;
-      font-size: 12px;
-    }
+.arrow{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#ffffff22;
+  font-size:27px;
+}
 
-    .plus {
-      font-size: 30px;
-      color: #ff35ed;
-    }
-  </style>
+/* COLORS */
+.blue{
+  background:linear-gradient(135deg,#0735a9,#00b9ff33);
+  border-color:#00d9ff;
+}
+
+.pink{
+  background:linear-gradient(135deg,#7300bd,#ff20e433);
+  border-color:#ff3bea;
+}
+
+.orange{
+  background:linear-gradient(135deg,#a94e00,#ffb30044);
+  border-color:#ffb51b;
+}
+
+.green{
+  background:linear-gradient(135deg,#006b58,#00d9a044);
+  border-color:#22f5bd;
+}
+
+.purple{
+  background:linear-gradient(135deg,#4d00a5,#c400ff44);
+  border-color:#d536ff;
+}
+
+.cyan{
+  background:linear-gradient(135deg,#005da8,#00d9ff44);
+  border-color:#00cfff;
+}
+
+/* PROJECTS */
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:28px 5px 14px;
+}
+
+.section-title h2{
+  font-size:22px;
+}
+
+.more{
+  border:2px solid #4262bd;
+  border-radius:25px;
+  padding:8px 16px;
+  background:#07102d;
+  color:white;
+}
+
+/* PROJECT LIST */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.project{
+  background:#07102d;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid #263d76;
+}
+
+.project-img{
+  height:125px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  background:linear-gradient(135deg,#ff7043,#172554,#7c3aed);
+}
+
+.project:nth-child(2) .project-img{
+  background:linear-gradient(135deg,#8b5cf6,#0f172a,#ec4899);
+}
+
+.project:nth-child(3) .project-img{
+  background:linear-gradient(135deg,#60a5fa,#312e81,#f0abfc);
+}
+
+.project:nth-child(4) .project-img{
+  background:linear-gradient(135deg,#64748b,#0f172a,#22d3ee);
+}
+
+.project:nth-child(5) .project-img{
+  background:linear-gradient(135deg,#f59e0b,#334155,#38bdf8);
+}
+
+.project-info{
+  padding:9px;
+}
+
+.project-info h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.project-info small{
+  color:#b8c4e5;
+}
+
+/* BOTTOM NAV */
+.bottom{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:1100px;
+  height:82px;
+  background:#030a24ee;
+  backdrop-filter:blur(12px);
+  border:2px solid #1553a5;
+  border-bottom:0;
+  border-radius:35px 35px 0 0;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:20;
+}
+
+.nav{
+  text-align:center;
+  color:#c9c8ff;
+  font-size:13px;
+}
+
+.nav-icon{
+  font-size:28px;
+  margin-bottom:4px;
+}
+
+.add{
+  width:72px;
+  height:72px;
+  margin-top:-30px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  background:linear-gradient(135deg,#00eaff,#ff00e6);
+  box-shadow:0 0 25px #b400ff;
+  border:5px solid #fff;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  .app{
+    padding:10px;
+    padding-bottom:95px;
+  }
+
+  .top{
+    height:85px;
+  }
+
+  .logo h1{
+    font-size:27px;
+  }
+
+  .logo p{
+    font-size:13px;
+  }
+
+  .menu{
+    font-size:30px;
+  }
+
+  .vip{
+    font-size:22px;
+  }
+
+  .search{
+    height:62px;
+  }
+
+  .search span{
+    font-size:16px;
+  }
+
+  .search button{
+    width:48px;
+    height:48px;
+    font-size:25px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+  }
+
+  .cat{
+    font-size:12px;
+    padding:10px 3px;
+  }
+
+  .tools{
+    gap:12px;
+  }
+
+  .card{
+    min-height:180px;
+    padding:15px;
+    border-radius:22px;
+  }
+
+  .card .icon{
+    width:48px;
+    height:48px;
+    font-size:25px;
+  }
+
+  .card h2{
+    font-size:17px;
+  }
+
+  .card p{
+    font-size:13px;
+  }
+
+  .arrow{
+    width:40px;
+    height:40px;
+    font-size:22px;
+  }
+
+  .projects{
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+    overflow:hidden;
+  }
+
+  .project-img{
+    height:75px;
+    font-size:28px;
+  }
+
+  .project-info{
+    padding:6px;
+  }
+
+  .project-info h3{
+    font-size:10px;
+  }
+
+  .project-info small{
+    font-size:8px;
+  }
+
+  .bottom{
+    height:72px;
+  }
+
+  .nav-icon{
+    font-size:23px;
+  }
+
+  .nav{
+    font-size:10px;
+  }
+
+  .add{
+    width:62px;
+    height:62px;
+    font-size:40px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <header>
-    <div class="logo">P&T</div>
-    <div class="tagline">Create Your Story with AI</div>
-  </header>
+  <!-- HEADER -->
+  <div class="top">
+    <div class="menu">☰</div>
 
-  <div class="search">
-    ✨ သင်လိုချင်တာ / အိုင်ဒီယာ ရေးသွင်းပါ...
+    <div class="logo">
+      <h1>PT & AI Studio</h1>
+      <p>Create Your Story with AI</p>
+    </div>
+
+    <div class="vip">👑</div>
   </div>
 
+  <!-- SEARCH -->
+  <div class="search">
+    <span>✨ သင်လိုချင်တာ / အိုင်ဒီယာ ရေးသွင်းပါ...</span>
+    <button>➜</button>
+  </div>
+
+  <!-- CATEGORY -->
   <div class="categories">
     <div class="cat">🔥 လူကြိုက်များ</div>
     <div class="cat">⭐ အသစ်များ</div>
@@ -160,59 +476,138 @@
     <div class="cat">✨ AI Tools</div>
   </div>
 
-  <div class="grid">
+  <!-- AI TOOLS -->
+  <div class="tools">
 
-    <div class="card">
+    <div class="card blue">
       <div class="icon">🖼️</div>
-      <div class="title">AI Image</div>
-      <div class="desc">စာရေးပြီး ပုံဖန်တီးပါ</div>
+      <h2>AI ပုံဖန်တီးခြင်း</h2>
+      <p>AI Image<br>စာရေးပြီး ပုံဖန်တီးပါ</p>
+      <div class="arrow">➜</div>
     </div>
 
-    <div class="card">
-      <div class="icon">🎬</div>
-      <div class="title">Image to Video</div>
-      <div class="desc">ပုံကို Video အဖြစ်ပြောင်းပါ</div>
+    <div class="card pink">
+      <div class="icon">🎞️</div>
+      <h2>ပုံမှ ဗီဒီယိုပြောင်းခြင်း</h2>
+      <p>Image to Video<br>ပုံတစ်ပုံကို ဗီဒီယိုအဖြစ်ပြောင်းပါ</p>
+      <div class="arrow">➜</div>
     </div>
 
-    <div class="card">
-      <div class="icon">✍️</div>
-      <div class="title">Text to Video</div>
-      <div class="desc">စာမှ Video ဖန်တီးပါ</div>
+    <div class="card orange">
+      <div class="icon">T</div>
+      <h2>စာသားမှ ဗီဒီယိုဖန်တီးခြင်း</h2>
+      <p>Text to Video<br>စာရေးပြီး ဗီဒီယိုဖန်တီးပါ</p>
+      <div class="arrow">➜</div>
     </div>
 
-    <div class="card">
+    <div class="card green">
       <div class="icon">🎙️</div>
-      <div class="title">AI Voice</div>
-      <div class="desc">AI အသံဖန်တီးပါ</div>
+      <h2>AI အသံ</h2>
+      <p>AI Voice<br>မြန်မာဘာသာအသံထုတ်ပါ</p>
+      <div class="arrow">➜</div>
     </div>
 
-    <div class="card">
+    <div class="card purple">
       <div class="icon">🎵</div>
-      <div class="title">Music & SFX</div>
-      <div class="desc">Music နှင့် Sound Effects</div>
+      <h2>သီချင်း / အသံအကျိုးသက်ရောက်မှု</h2>
+      <p>Music & SFX<br>သီချင်းနှင့် အသံများဖန်တီးပါ</p>
+      <div class="arrow">➜</div>
     </div>
 
-    <div class="card">
+    <div class="card cyan">
       <div class="icon">📁</div>
-      <div class="title">My Projects</div>
-      <div class="desc">သင့် Project များ</div>
+      <h2>ကျွန်ုပ်၏ ပရောဂျက်များ</h2>
+      <p>My Projects<br>ဖန်တီးထားသော အနုပညာများ</p>
+      <div class="arrow">➜</div>
     </div>
 
   </div>
 
-  <div class="recent">
+  <!-- PROJECTS -->
+  <div class="section-title">
     <h2>⭐ နောက်ဆုံးဖန်တီးထားသောများ</h2>
+    <button class="more">အားလုံးကြည့်ရန် ❯</button>
   </div>
 
-  <div class="bottom">
-    <div class="nav">🏠<br>ပင်မစာမျက်နှာ</div>
-    <div class="nav">🔍<br>ရှာဖွေမည်</div>
-    <div class="nav plus">＋</div>
-    <div class="nav">🖼️<br>ဖန်တီးထားသည်</div>
-    <div class="nav">👤<br>Profile</div>
+  <div class="projects">
+
+    <div class="project">
+      <div class="project-img">💑</div>
+      <div class="project-info">
+        <h3>ချစ်ခြင်းမေတ္တာ</h3>
+        <small>2025-09-09</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-img">👩🏻</div>
+      <div class="project-info">
+        <h3>AI ပုံ</h3>
+        <small>2025-09-08</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-img">🏰</div>
+      <div class="project-info">
+        <h3>Fantasy Video</h3>
+        <small>2025-09-07</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-img">🐱</div>
+      <div class="project-info">
+        <h3>ကြောင်လေး</h3>
+        <small>2025-09-06</small>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-img">🌅</div>
+      <div class="project-info">
+        <h3>သဘာဝအလှ</h3>
+        <small>2025-09-05</small>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom">
+
+  <div class="nav">
+    <div class="nav-icon">🏠</div>
+    ပင်မစာမျက်နှာ
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">◈</div>
+    ရှာဖွေမှုများ
+  </div>
+
+  <div class="nav">
+    <div class="add">+</div>
+    ဖန်တီးမယ်
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">▧</div>
+    တင်ထားသည်
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">♙</div>
+    ကိုယ်ရေးအချက်အလက်
   </div>
 
 </div>
 
 </body>
-</html်။
+</html>
+ဟုတ်ပြီ 👍 ဒီပုံကို အခြေခံပြီး PT & AI Studio Home Page ပုံစံကို ပြန်လုပ်ပေးမယ်။
+အခု index.html ထဲမှာ ရှိတာအားလုံးကို Select All → ဖျက် → အောက်က code တစ်ခုလုံးကို Paste လုပ်ပါ။ အပိုင်းလိုက်မထည့်ပါနဲ့။
+HTML
+အရေးကြီးတာတစ်ခု — ဒီ code က screenshot ပုံစံကို HTML/CSS နဲ့ ပြန်တည်ဆောက်ထားတာ ဖြစ်ပြီး၊ AI Image, AI Voice, Text to Video စတဲ့ ခလုတ်တွေက အခုချိန်မှာ UI ပဲ ဖြစ်ပါတယ်။ တကယ် AI အလုပ်လုပ်အောင်လုပ်မယ်ဆိုရင် နောက်တစ်ဆင့်မှာ ခလုတ်တွေကို AI API တွေနဲ့ ချိတ်ရပါမယ်။
