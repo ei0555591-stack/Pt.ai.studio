@@ -1,6 +1,351 @@
 <!DOCTYPE html>
 <html lang="my">
+<head><!DOCTYPE html>
+<html lang="my">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT & AI Studio</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#080b16;
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  padding:22px 18px 15px;
+  background:linear-gradient(135deg,#10152b,#080b16);
+  border-bottom:1px solid #202744;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#fff;
+}
+
+.logo span{
+  color:#4da3ff;
+}
+
+.subtitle{
+  margin-top:6px;
+  color:#8e9ab8;
+  font-size:14px;
+}
+
+.container{
+  padding:18px;
+  padding-bottom:90px;
+}
+
+.search{
+  background:#11172a;
+  border:1px solid #29345b;
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:22px;
+}
+
+.search input{
+  width:100%;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:#fff;
+  font-size:16px;
+}
+
+.search button{
+  width:100%;
+  margin-top:12px;
+  padding:13px;
+  border:0;
+  border-radius:12px;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#247cff,#8b4dff);
+}
+
+h2{
+  font-size:19px;
+  margin:20px 0 13px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:linear-gradient(145deg,#12182d,#0d1120);
+  border:1px solid #28345b;
+  border-radius:17px;
+  padding:18px 14px;
+  min-height:145px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:active{
+  transform:scale(.97);
+}
+
+.icon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  background:linear-gradient(135deg,#267cff,#814cff);
+  margin-bottom:12px;
+}
+
+.card h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.card p{
+  color:#8995b5;
+  font-size:12px;
+  line-height:1.4;
+}
+
+.projects{
+  margin-top:10px;
+}
+
+.project{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#10162a;
+  border:1px solid #242e50;
+  padding:13px;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.project-icon{
+  width:48px;
+  height:48px;
+  border-radius:11px;
+  background:#1b2850;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+
+.project h4{
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.project span{
+  color:#7f8ba8;
+  font-size:12px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:#0d1222;
+  border-top:1px solid #252e4c;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:10;
+}
+
+.nav{
+  color:#7783a1;
+  text-align:center;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.nav.active{
+  color:#4da3ff;
+}
+
+.nav div{
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.message{
+  margin-top:14px;
+  color:#6fdbff;
+  font-size:14px;
+  text-align:center;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">PT <span>& AI</span> Studio</div>
+  <div class="subtitle">AI နဲ့ ဖန်တီးမှုတွေကို လွယ်ကူစွာလုပ်လိုက်ပါ ✨</div>
+</header>
+
+<div class="container">
+
+  <div class="search">
+    <input id="prompt"
+      type="text"
+      placeholder="AI ကို ဘာလုပ်ခိုင်းချင်လဲ?">
+    <button onclick="generate()">Generate ✨</button>
+    <div id="message" class="message"></div>
+  </div>
+
+  <h2>AI Tools</h2>
+
+  <div class="grid">
+
+    <div class="card" onclick="openTool('AI Image')">
+      <div class="icon">🎨</div>
+      <h3>AI Image</h3>
+      <p>စာသားကနေ ပုံလှလှတွေ ဖန်တီးပါ</p>
+    </div>
+
+    <div class="card" onclick="openTool('Image to Video')">
+      <div class="icon">🎬</div>
+      <h3>Image to Video</h3>
+      <p>ပုံတွေကို Video အဖြစ် ပြောင်းပါ</p>
+    </div>
+
+    <div class="card" onclick="openTool('Text to Video')">
+      <div class="icon">📹</div>
+      <h3>Text to Video</h3>
+      <p>စာသားကနေ Video ဖန်တီးပါ</p>
+    </div>
+
+    <div class="card" onclick="openTool('AI Voice')">
+      <div class="icon">🎙️</div>
+      <h3>AI Voice</h3>
+      <p>AI အသံနဲ့ စကားပြောဖန်တီးပါ</p>
+    </div>
+
+    <div class="card" onclick="openTool('Music & SFX')">
+      <div class="icon">🎵</div>
+      <h3>Music & SFX</h3>
+      <p>Music နဲ့ Sound Effects ဖန်တီးပါ</p>
+    </div>
+
+    <div class="card" onclick="openTool('My Projects')">
+      <div class="icon">📁</div>
+      <h3>My Projects</h3>
+      <p>ကိုယ်ဖန်တီးထားတာတွေ ကြည့်ပါ</p>
+    </div>
+
+  </div>
+
+  <h2>Recent Projects</h2>
+
+  <div class="projects">
+
+    <div class="project">
+      <div class="project-icon">🖼️</div>
+      <div>
+        <h4>My AI Image</h4>
+        <span>AI Image Project</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-icon">🎥</div>
+      <div>
+        <h4>My Video</h4>
+        <span>Video Project</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-icon">🎧</div>
+      <div>
+        <h4>My Music</h4>
+        <span>Music Project</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bottom">
+  <div class="nav active" onclick="home()">
+    <div>⌂</div>
+    Home
+  </div>
+
+  <div class="nav" onclick="newProject()">
+    <div>＋</div>
+    New
+  </div>
+
+  <div class="nav" onclick="openTool('My Projects')">
+    <div>▣</div>
+    Projects
+  </div>
+
+  <div class="nav" onclick="openTool('Settings')">
+    <div>⚙</div>
+    Settings
+  </div>
+</div>
+
+<script>
+function generate(){
+  const input=document.getElementById("prompt");
+  const message=document.getElementById("message");
+
+  if(input.value.trim()===""){
+    message.innerText="AI ကိုလုပ်ခိုင်းချင်တာ ရိုက်ထည့်ပါ ✨";
+  }else{
+    message.innerText="✨ Generate လုပ်ဖို့ အဆင်သင့်ပါပြီ — "+input.value;
+  }
+
+  message.style.display="block";
+}
+
+function openTool(name){
+  alert(name+" ကို ဖွင့်နေပါတယ် ✨");
+}
+
+function newProject(){
+  document.getElementById("prompt").focus();
+}
+
+function home(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+</script>
+
+</body>
+</html>
 <meta  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PT & AI Studio</title>
